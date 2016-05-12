@@ -98,7 +98,6 @@ $(document).ready(function(){
     }
   });
   ul.on('click','li',function(e){
-    e.stopPropagation();
     var ele=$(e.target||e.srcElement);
     options.mode=ele.text();
     input.text(ele.text());
