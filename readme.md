@@ -33,6 +33,7 @@ $('.jBanner-wrapper').jBannerInit(options);
   *  "vertical-blind":垂直百叶窗切换效果
   *  "stripe":条纹切换效果
   *  "vertical-stripe":垂直条纹切换效果
+
   mode默认选项为fade模式。
 * autoPlay:焦点图图片是否自动切换，布尔型。默认为true，即自动切换
 * interval:焦点图图片切换时间间隔(毫秒)，默认为3000 ms，且最小间隔为1500 ms(小于1500将自动设置为1500)。当autoPlay为false，设置此参数无效
