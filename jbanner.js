@@ -3,6 +3,9 @@
   $.fn.extend({
     'jBannerInit':function(options){
       var opts=$.extend({},$.fn.jBannerInit.defaults, options);
+      if(opts.interval<1500){
+        opts.interval=1500;
+      }
 
       var myCss='<style>\
                 .jBanner-wrapper{overflow:hidden;}\
@@ -27,6 +30,7 @@
                 </style>}'
       $('head').append(myCss);
       var wrapper=$(this);
+      var autoIndex=0;
       var picNum=opts.imgURL.length;
       var ctrlBar=$(document.createElement('div'));
       ctrlBar.addClass('jBanner-ctrl');
@@ -41,6 +45,7 @@
           ele.className='jBanner-ctrl-selected';
         }
       });
+      $('.jBanner-content').remove();
 
       if(opts.mode=='fade'||opts.mode=='slide'){
         var component;
@@ -60,6 +65,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           if(opts.mode=='fade'){
@@ -101,6 +107,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           var cops=$('.jBanner-box');
@@ -129,6 +136,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           var cops=$('.jBanner-blind');
@@ -157,6 +165,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           var cops=$('.jBanner-vertical-blind');
@@ -185,6 +194,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           var cops=$('.jBanner-stripe');
@@ -225,6 +235,7 @@
         ctrlBar.off('click','span');
         ctrlBar.on('click','span',function(e){
           var target=e.target||e.srcElement;
+          autoIndex=target.index;
           ctrlItems.removeClass('jBanner-ctrl-selected');
           $(target).addClass('jBanner-ctrl-selected');
           var cops=$('.jBanner-vertical-stripe');
@@ -249,6 +260,16 @@
           },500);
         });
       }
+      if(opts.autoPlay){
+        var t;
+        function autoPlay(){
+          autoIndex=(autoIndex+1)%5;
+          ctrlItems.eq(autoIndex).click();
+          clearTimeout(t);
+          t=setTimeout(autoPlay,opts.interval);
+        };
+        setTimeout(autoPlay,opts.interval);
+      }
 
 
     }
@@ -258,6 +279,8 @@
     imgURL:[],
     imgWidth:800,
     imgHeight:400,
-    mode:'fade'
+    mode:'fade',
+    autoPlay:true,
+    interval:3000
   }
 }($);

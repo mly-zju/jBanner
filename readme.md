@@ -1,5 +1,6 @@
 ##jBanner
 一款轻量但是强大的焦点图组件，可以实现多种焦点图轮播效果。组件持续开发中，未来还将实现更多酷炫的效果哦！
+* 在线演示: http://mly-zju.github.io/project/jBanner/demo.html
 
 ##依赖关系与版本
 * 组件是基于jquery的，所以在使用之前，请首先导入jquery库。
@@ -32,6 +33,8 @@ $('.jBanner-wrapper').jBannerInit(options);
   *  "vertical-blind":垂直百叶窗切换效果
   *  "stripe":条纹切换效果
   *  "vertical-stripe":垂直条纹切换效果
+* autoPlay:焦点图图片是否自动切换，布尔型。默认为true，即自动切换。
+* interval:焦点图图片切换时间间隔(毫秒)，默认为3000 ms，且最小间隔为1500 ms(小于1500将自动设置为1500)。当autoPlay为false，设置此参数无效。
 
   mode默认选项为fade模式。
 
