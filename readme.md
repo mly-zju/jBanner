@@ -28,6 +28,7 @@ $('.jBanner-wrapper').jBannerInit(options);
 * mode:焦点图切换效果选项，字符串。可选项有：
   *  "fade":淡入淡出效果
   *  "slide":滑入滑出效果
+  *  "vertical-slide":垂直滑入滑出效果
   *  "box":盒状切换效果
   *  "blind":百叶窗切换效果
   *  "vertical-blind":垂直百叶窗切换效果
